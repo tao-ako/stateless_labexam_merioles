@@ -21,6 +21,16 @@ void main() {
     expect(find.text('Operating Systems'), findsOneWidget);
   });
 
+  testWidgets('tapping the add subject button displays a confirmation', (
+    tester,
+  ) async {
+    await tester.pumpWidget(const StudentDashboardApp());
+    await tester.tap(find.byTooltip('Add subject'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Add Subject Clicked!'), findsOneWidget);
+  });
+
   testWidgets('editing the profile updates the dashboard', (tester) async {
     await tester.pumpWidget(const StudentDashboardApp());
     await tester.tap(find.byTooltip('Edit profile'));

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/student_profile_data.dart';
-import '../widgets/bottom_navigation.dart';
 import '../widgets/contact_information_card.dart';
 import '../widgets/dashboard_header.dart';
 import '../widgets/student_profile.dart';
@@ -22,8 +21,6 @@ class _StudentDashboardState extends State<StudentDashboard> {
     phone: '09922310041',
     address: 'Purok 37, NHA Ma-a, Davao City',
   );
-  bool _isTabSelected = true;
-
   Future<void> _confirmLogout() async {
     debugPrint('Logout clicked');
     if (mounted) {
@@ -79,6 +76,9 @@ class _StudentDashboardState extends State<StudentDashboard> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print('Add Subject Clicked!');
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Add Subject Clicked!')),
+          );
         },
         tooltip: 'Add subject',
         backgroundColor: const Color(0xFFF1EDFF),
@@ -86,10 +86,6 @@ class _StudentDashboardState extends State<StudentDashboard> {
         elevation: 5,
         shape: const CircleBorder(),
         child: const Icon(Icons.add),
-      ),
-      bottomNavigationBar: DashboardBottomNavigation(
-        isSelected: _isTabSelected,
-        onTap: () => setState(() => _isTabSelected = true),
       ),
     );
   }
