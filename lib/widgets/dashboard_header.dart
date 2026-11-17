@@ -23,7 +23,10 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-          onPressed: onLogout,
+          onPressed: () {
+            debugPrint('Logout clicked');
+            onLogout();
+          },
           tooltip: 'Log out',
           icon: const Icon(Icons.logout_rounded),
           color: const Color(0xFF333333),

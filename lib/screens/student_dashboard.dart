@@ -5,7 +5,6 @@ import '../widgets/contact_information_card.dart';
 import '../widgets/dashboard_header.dart';
 import '../widgets/student_profile.dart';
 import '../widgets/subject_card.dart';
-import 'edit_profile_dialog.dart';
 
 class StudentDashboard extends StatefulWidget {
   const StudentDashboard({super.key});
@@ -15,9 +14,9 @@ class StudentDashboard extends StatefulWidget {
 }
 
 class _StudentDashboardState extends State<StudentDashboard> {
-  StudentProfileData _profile = const StudentProfileData(
+  final StudentProfileData _profile = const StudentProfileData(
     name: 'Kevin Loyd T. Merioles',
-    studentId: '537327',
+    studentId: '537-327',
     course: 'BSIT 3RD YEAR',
     email: 'k.merioles.537327@umindanao.edu.ph',
     phone: '09922310041',
@@ -26,39 +25,11 @@ class _StudentDashboardState extends State<StudentDashboard> {
   bool _isTabSelected = true;
 
   Future<void> _confirmLogout() async {
-    final shouldLogout = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Log out?'),
-        content: const Text('Are you sure you want to log out?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('Log out'),
-          ),
-        ],
-      ),
-    );
-
-    if (shouldLogout == true && mounted) {
+    debugPrint('Logout clicked');
+    if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Logout confirmed.')),
+        const SnackBar(content: Text('Logout clicked')),
       );
-    }
-  }
-
-  Future<void> _editProfile() async {
-    final updatedProfile = await showDialog<StudentProfileData>(
-      context: context,
-      builder: (context) => EditProfileDialog(profile: _profile),
-    );
-
-    if (updatedProfile != null && mounted) {
-      setState(() => _profile = updatedProfile);
     }
   }
 
@@ -106,13 +77,15 @@ class _StudentDashboardState extends State<StudentDashboard> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _editProfile,
-        tooltip: 'Edit profile',
+        onPressed: () {
+          print('Add Subject Clicked!');
+        },
+        tooltip: 'Add subject',
         backgroundColor: const Color(0xFFF1EDFF),
         foregroundColor: const Color(0xFF7763C1),
         elevation: 5,
         shape: const CircleBorder(),
-        child: const Icon(Icons.edit_outlined),
+        child: const Icon(Icons.add),
       ),
       bottomNavigationBar: DashboardBottomNavigation(
         isSelected: _isTabSelected,

@@ -14,11 +14,7 @@ class StudentProfile extends StatelessWidget {
         const CircleAvatar(
           radius: 40,
           backgroundColor: Color(0xFFEDE9F8),
-          child: Icon(
-            Icons.person_rounded,
-            size: 46,
-            color: Color(0xFF8273B5),
-          ),
+          backgroundImage: AssetImage('assets/student_photo.jpg'),
         ),
         const SizedBox(width: 16),
         Expanded(
